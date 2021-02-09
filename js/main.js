@@ -17,6 +17,7 @@ fetch(`http://api.tvmaze.com/search/shows?q=${inputValue}`)
     for (let index = 0; index < data.length; index++) {
         showsList.push(data[index].show); 
     }
+ 
     paintShowsList();
 });
 }
@@ -32,7 +33,7 @@ function handleSearch(e) {
  }
  searchElement.addEventListener('click', handleSearch)
 
-//paint shows
+// paint shows
 
  const containerElement = document.querySelector('.js-container--list');
 
@@ -57,7 +58,7 @@ function handleSearch(e) {
     listenShowEvents();
     };
 
-//listen Shows events  
+// listen Shows events  
 
 function listenShowEvents(){
     const showElements = document.querySelectorAll('.js-show');
@@ -66,33 +67,50 @@ function listenShowEvents(){
     }
 }
 
+// add favorites to array
 
 function handleShow(ev){
-    const favoriteSelect = favoritesList.find(favorite => (favorite.id === parseInt(ev.currentTarget.id)));
-    console.log(favoriteSelect)
-    if (favoriteSelect === undefined){
-    const showSelect = showsList.find(show => (show.id === parseInt(ev.currentTarget.id)));
-    favoritesList.push(showSelect);
+    const favoriteSelectIndex = favoritesList.findIndex(favorite => (favorite.id === parseInt(ev.currentTarget.id)));
+    if (favoriteSelectIndex === -1){
+        const showSelect = showsList.find(show => (show.id === parseInt(ev.currentTarget.id)));
+        favoritesList.push(showSelect);
     }
     else {
-        favoritesList.splice(0,1);
+        favoritesList.splice(favoriteSelectIndex,1);
     }
-
-    
-    console.log('click en serie',showSelect);
-    
     paintFavoritesList();
+    setInLocalStorage();
   }
 
-// Paint favorite list
+// local Storage
+
+function setInLocalStorage(){
+    const stringFavorites = JSON.stringify(favoritesList); 
+    localStorage.setItem('favorites', stringFavorites); 
+}
+function getFromLocalStorage(){
+    const localStorageFavorites = localStorage.getItem('favorites');
+    console.log(localStorageFavorites);
+    if (localStorageFavorites === null) {
+        handleShow(); 
+    }
+    else {
+        const arrayFavorites = JSON.parse(localStorageFavorites);
+        favoritesList = arrayFavorites;
+        console.log(favoritesList);
+    }
+}
+
+
+// paint favorite list
 
   const containerFavoriteElement = document.querySelector('.js-container--fav');
+
   function paintFavoritesList(){  
       let htmlCode = '';
       htmlCode += '<ul class="js-list">';
       for (const favorite of favoritesList) {
-          htmlCode += `<li class="show js-show" id="${favorite.id}" style="background-color: #fa8072">`;
-        
+          htmlCode += `<li class="show js-show js-show--favorite" id="${favorite.id}" style="background-color: #fa8072">`;
           htmlCode += `<h3 class="js-show-name">${favorite.name}</h3>`;
           let favoriteImage = favorite.image;
           if (favoriteImage === null){
@@ -102,12 +120,12 @@ function handleShow(ev){
           htmlCode += `<img src="${favorite.image.medium}" alt="${favorite.name}">`;
           }
           htmlCode += '</li>';  
- 
       }
      htmlCode += '</ul>';
      containerFavoriteElement.innerHTML = htmlCode;
-
      };
 
+
+     getFromLocalStorage();
 
 
