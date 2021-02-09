@@ -2,38 +2,60 @@
 
 // variables globales
 
-const inputElement = document.querySelector('.js-input');
-const searchElement = document.querySelector('.js-search');
-const containerElement = document.querySelector('js.container');
 
-let dataResults  = [];
+let showsList  = [];
+let favoriteList = [];
 
 // call Api
+const inputElement = document.querySelector('.js-input');
 
-function callToApi () {
-fetch('http://api.tvmaze.com/search/shows?q=girls')
+function callToApi() {
+const inputValue = inputElement.value;
+fetch(`http://api.tvmaze.com/search/shows?q=${inputValue}`) 
 .then(response => response.json())
 .then(data => {
     for (let index = 0; index < data.length; index++) {
-        dataResults = data[index].show;
-        console.log(dataResults);
-        paintShowsList(dataResults);
+        showsList.push(data[index].show); 
     }
+    paintShowsList();
+    console.log(showsList); 
 });
 }
 
-callToApi();
+// click search 
+const searchElement = document.querySelector('.js-search');
+ function handleSearch(e) {
+    e.preventDefault();   
+    callToApi();
+    paintShowsList();
+ }
+ searchElement.addEventListener('click', handleSearch)
 
+//paint shows
+ const containerElement = document.querySelector('.js-container--list');
+ function paintShowsList(){  
+     let htmlCode = '';
+     htmlCode += '<ul class="js-list">';
+     for (const show of showsList) {
+         htmlCode += '<li class="show js-show">';
+         htmlCode += `<h3 class="js-show-name">${show.name}</h3>`;
+         let showImage = show.image;
+         if (showImage === null){
+        htmlCode += `<img src="https://via.placeholder.com/210x295/ffffff/666666/? text=TV" alt="${show.name}">`;
+         } 
+         else {
+         htmlCode += `<img src="${show.image.medium}" alt="${show.name}">`;
+         }
+         htmlCode += '</li>';  
 
-function paintShowsList(){  
-    let htmlCode = '';
-    htmlCode += '<ul class="js-list">';
-    for (const show of showsList) {
-        htmlCode += '<li class="js-show">';
-        htmlCode += `<h2 class="js-show-name">${show.name}</h2>`;
-        htmlCode += `<img src="${show.image.medium}" alt="image">`;
-        htmlCode += '</li>';  
-    }
-    htmlCode += '</ul>';
-    containerElement.innerHTML = htmlCode;
-};
+     }
+     htmlCode += '</ul>';
+     containerElement.innerHTML = htmlCode;
+ };
+  // Add to favorites
+
+  function 
+const showElement = document.querySelector('.js-show');
+
+showElement.addEventListener('click', handleShowClick)
+

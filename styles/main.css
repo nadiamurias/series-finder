@@ -1,0 +1,21 @@
+.page {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+}
+.header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.show {
+  background-color: lightsalmon;
+  color: white;
+  list-style-type: none;
+}
+.container-list {
+  width: 80vw;
+}
