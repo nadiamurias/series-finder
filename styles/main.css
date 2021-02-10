@@ -41,7 +41,6 @@
 }
 .favorites {
   width: 20vw;
-  margin-top: 5px;
 }
 .title-fav {
   font-family: "Montserrat", sans-serif;
@@ -49,8 +48,7 @@
   padding-top: 10px;
   padding-bottom: 10px;
   background-color: #d3d3d3;
-  color: dimgray;
-  margin-left: 5px;
+  color: black;
   font-size: 20px;
 }
 .container-fav {
@@ -68,11 +66,17 @@
   flex-wrap: wrap;
   padding: 0;
 }
+.list-fav {
+  display: flex;
+  justify-content: center;
+}
+
 .show {
   border: 3px solid #d40f48;
   color: white;
   list-style-type: none;
   font-family: "Montserrat", sans-serif;
+
   margin: 5px;
   display: flex;
   flex-direction: column;
@@ -98,7 +102,6 @@
 }
 .list {
   display: flex;
-  justify-content: center;
 }
 .image-fav {
   height: 70%;

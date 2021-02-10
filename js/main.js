@@ -38,6 +38,7 @@ function handleSearch(e) {
 
  function paintShowsList(){  
      let htmlCode = '';
+     htmlCode += '<h2 class="title-fav">Resultados de búsqueda</h2>';
      htmlCode += '<ul class="list js-list">';
      for (const show of showsList) {
          htmlCode += `<li class="show js-show" id="${show.id}">`;
@@ -105,7 +106,7 @@ function getFromLocalStorage(){
 
   function paintFavoritesList(){  
       let htmlCode = '';
-      htmlCode += '<ul class="list js-list">';
+      htmlCode += '<ul class="list list-fav js-list">';
       for (const favorite of favoritesList) {
           htmlCode += `<li class="show-fav show js-show js-show--favorite" id="${favorite.id}" style="background-color: #d40f48">`;
           htmlCode += `<h3 class="show-name show-name-fav js-show-name">${favorite.name}</h3>`;
