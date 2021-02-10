@@ -112,10 +112,10 @@ function getFromLocalStorage(){
           htmlCode += `<h3 class="show-name show-name-fav js-show-name">${favorite.name}</h3>`;
           let favoriteImage = favorite.image;
           if (favoriteImage === null){
-         htmlCode += `<img class="image image-fav" src="https://via.placeholder.com/210x295/ffffff/666666/? text=TV" alt="${favorite.name}">`;
+            htmlCode += `<img class="image image-fav" src="https://via.placeholder.com/210x295/ffffff/666666/? text=TV" alt="${favorite.name}">`;
           } 
           else {
-          htmlCode += `<img class="image image-fav" src="${favorite.image.medium}" alt="${favorite.name}">`;
+            htmlCode += `<img class="image image-fav" src="${favorite.image.medium}" alt="${favorite.name}">`;
           }
           htmlCode += '</li>';  
       }
