@@ -38,6 +38,7 @@ function handleSearch(e) {
 
  function paintShowsList(){  
      let htmlCode = '';
+     htmlCode += '<h2 class="title-fav">Resultados de búsqueda</h2>';
      htmlCode += '<ul class="list js-list">';
      for (const show of showsList) {
          htmlCode += `<li class="show js-show" id="${show.id}">`;
@@ -101,11 +102,11 @@ function getFromLocalStorage(){
 
 // paint favorite list
 
-  const containerFavoriteElement = document.querySelector('.js-container--fav');
+const containerFavoriteElement = document.querySelector('.js-container--fav');
 
-  function paintFavoritesList(){  
-      let htmlCode = '';
-      htmlCode += '<ul class="list js-list">';
+function paintFavoritesList(){  
+    let htmlCode = '';
+    htmlCode += '<ul class="list list-fav js-list">';
       for (const favorite of favoritesList) {
           htmlCode += `<li class="show-fav show js-show js-show--favorite" id="${favorite.id}" style="background-color: #d40f48">`;
           htmlCode += `<h3 class="show-name show-name-fav js-show-name">${favorite.name}</h3>`;
@@ -115,15 +116,27 @@ function getFromLocalStorage(){
           } 
           else {
             htmlCode += `<img class="image image-fav" src="${favorite.image.medium}" alt="${favorite.name}">`;
-          }
-          htmlCode += '<div style="background-color: #808080 width= 20px">x</div>';
-          htmlCode += '</li>';  
-         
+            }
+        htmlCode += `<div class="js-remove-fav" style="background-color: #808080" id="${favorite.id}">x</div>`;
+        htmlCode += '</li>';  
       }
-     htmlCode += '</ul>';
-     
-     containerFavoriteElement.innerHTML = htmlCode;
+    htmlCode += '</ul>';
+    containerFavoriteElement.innerHTML = htmlCode;
      };
+
+// remove favorite from list
+
+const removeFavorite = document.querySelector('.js-remove-fav');
+
+function handleRemoveFavorite(ev){
+    const favoriteSelectIndex = favoritesList.findIndex(favorite => (favorite.id === parseInt(ev.currentTarget.id)));
+    if (favoriteSelectIndex === favorite.id){
+        favoritesList.splice(favoriteSelectIndex,1);   
+    }
+    paintFavoritesList();
+    setInLocalStorage();
+}
+removeFavorite.addEventListener('click', handleRemoveFavorite);
 
 
      getFromLocalStorage();
