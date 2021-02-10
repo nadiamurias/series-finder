@@ -120,22 +120,6 @@ function paintFavoritesList() {
   }
   htmlCode += "</ul>";
   containerFavoriteElement.innerHTML = htmlCode;
-
-  const removeFavorites = document.querySelectorAll(".js-remove-fav");
-  for (const removeFavorite of removeFavorites) {
-    removeFavorite.addEventListener("click", handleRemoveFavorite);
-  }
-}
-
-// remove favorite from list
-
-function handleRemoveFavorite(ev) {
-  const favoriteSelectIndex = favoritesList.findIndex(
-    (favorite) => favorite.id === parseInt(ev.currentTarget.id)
-  );
-  favoritesList.splice(favoriteSelectIndex, 1);
-  paintFavoritesList();
-  setInLocalStorage();
 }
 
 getFromLocalStorage();
