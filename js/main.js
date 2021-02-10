@@ -76,6 +76,7 @@ function handleShowFavorite(ev){
     }
     else {
         favoritesList.splice(favoriteSelectIndex,1);
+       
     }
     paintFavoritesList();
     setInLocalStorage();
@@ -89,12 +90,10 @@ function setInLocalStorage(){
 }
 function getFromLocalStorage(){
     const localStorageFavorites = localStorage.getItem('favorites');
-    if (localStorageFavorites === null) {
-        handleShowFavorite(); 
-    }
-    else {
+    if (localStorageFavorites !== null) {
         const arrayFavorites = JSON.parse(localStorageFavorites);
         favoritesList = arrayFavorites;
+        console.log(favoritesList);
     }
     paintFavoritesList();
 }
@@ -117,9 +116,12 @@ function getFromLocalStorage(){
           else {
             htmlCode += `<img class="image image-fav" src="${favorite.image.medium}" alt="${favorite.name}">`;
           }
+          htmlCode += '<div style="background-color: #808080">x</div>';
           htmlCode += '</li>';  
+         
       }
      htmlCode += '</ul>';
+     
      containerFavoriteElement.innerHTML = htmlCode;
      };
 
