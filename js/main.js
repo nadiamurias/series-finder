@@ -116,7 +116,7 @@ function getFromLocalStorage(){
           else {
             htmlCode += `<img class="image image-fav" src="${favorite.image.medium}" alt="${favorite.name}">`;
           }
-          htmlCode += '<div style="background-color: #808080">x</div>';
+          htmlCode += '<div style="background-color: #808080 width= 20px">x</div>';
           htmlCode += '</li>';  
          
       }
