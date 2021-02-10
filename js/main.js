@@ -73,7 +73,6 @@ function handleShowFavorite(ev){
     if (favoriteSelectIndex === -1){
         const showSelect = showsList.find(show => (show.id === parseInt(ev.currentTarget.id)));
         favoritesList.push(showSelect);
-        console.log(showSelect);
     }
     else {
         favoritesList.splice(favoriteSelectIndex,1);
@@ -90,14 +89,12 @@ function setInLocalStorage(){
 }
 function getFromLocalStorage(){
     const localStorageFavorites = localStorage.getItem('favorites');
-    console.log(localStorageFavorites);
     if (localStorageFavorites === null) {
         handleShowFavorite(); 
     }
     else {
         const arrayFavorites = JSON.parse(localStorageFavorites);
         favoritesList = arrayFavorites;
-        console.log(favoritesList);
     }
     paintFavoritesList();
 }
