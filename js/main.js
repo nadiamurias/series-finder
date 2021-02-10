@@ -16,8 +16,7 @@ fetch(`http://api.tvmaze.com/search/shows?q=${inputValue}`)
     showsList = [];
     for (let index = 0; index < data.length; index++) {
         showsList.push(data[index].show); 
-    }
- 
+    } 
     paintShowsList();
 });
 }
@@ -39,16 +38,16 @@ function handleSearch(e) {
 
  function paintShowsList(){  
      let htmlCode = '';
-     htmlCode += '<ul class="js-list">';
+     htmlCode += '<ul class="list js-list">';
      for (const show of showsList) {
          htmlCode += `<li class="show js-show" id="${show.id}">`;
-         htmlCode += `<h3 class="js-show-name">${show.name}</h3>`;
+         htmlCode += `<h3 class="show-name js-show-name">${show.name}</h3>`;
          let showImage = show.image;
          if (showImage === null){
-        htmlCode += `<img src="https://via.placeholder.com/210x295/ffffff/666666/? text=TV" alt="${show.name}">`;
+        htmlCode += `<img class="image" src="https://via.placeholder.com/210x295/ffffff/666666/? text=TV" alt="${show.name}">`;
          } 
          else {
-         htmlCode += `<img src="${show.image.medium}" alt="${show.name}">`;
+         htmlCode += `<img class="image" src="${show.image.medium}" alt="${show.name}">`;
          }
          htmlCode += '</li>';  
 
@@ -63,17 +62,18 @@ function handleSearch(e) {
 function listenShowEvents(){
     const showElements = document.querySelectorAll('.js-show');
     for (const showElement of showElements) {
-       showElement.addEventListener('click', handleShow);
+       showElement.addEventListener('click', handleShowFavorite);
     }
 }
 
 // add favorites to array
 
-function handleShow(ev){
+function handleShowFavorite(ev){
     const favoriteSelectIndex = favoritesList.findIndex(favorite => (favorite.id === parseInt(ev.currentTarget.id)));
     if (favoriteSelectIndex === -1){
         const showSelect = showsList.find(show => (show.id === parseInt(ev.currentTarget.id)));
         favoritesList.push(showSelect);
+        console.log(showSelect);
     }
     else {
         favoritesList.splice(favoriteSelectIndex,1);
@@ -92,13 +92,14 @@ function getFromLocalStorage(){
     const localStorageFavorites = localStorage.getItem('favorites');
     console.log(localStorageFavorites);
     if (localStorageFavorites === null) {
-        handleShow(); 
+        handleShowFavorite(); 
     }
     else {
         const arrayFavorites = JSON.parse(localStorageFavorites);
         favoritesList = arrayFavorites;
         console.log(favoritesList);
     }
+    paintFavoritesList();
 }
 
 
@@ -110,14 +111,14 @@ function getFromLocalStorage(){
       let htmlCode = '';
       htmlCode += '<ul class="js-list">';
       for (const favorite of favoritesList) {
-          htmlCode += `<li class="show js-show js-show--favorite" id="${favorite.id}" style="background-color: #fa8072">`;
-          htmlCode += `<h3 class="js-show-name">${favorite.name}</h3>`;
+          htmlCode += `<li class="show js-show js-show--favorite" id="${favorite.id}" style="background-color: #d40f48">`;
+          htmlCode += `<h3 class="show-name js-show-name">${favorite.name}</h3>`;
           let favoriteImage = favorite.image;
           if (favoriteImage === null){
-         htmlCode += `<img src="https://via.placeholder.com/210x295/ffffff/666666/? text=TV" alt="${favorite.name}">`;
+         htmlCode += `<img class="image" src="https://via.placeholder.com/210x295/ffffff/666666/? text=TV" alt="${favorite.name}">`;
           } 
           else {
-          htmlCode += `<img src="${favorite.image.medium}" alt="${favorite.name}">`;
+          htmlCode += `<img class="image" src="${favorite.image.medium}" alt="${favorite.name}">`;
           }
           htmlCode += '</li>';  
       }

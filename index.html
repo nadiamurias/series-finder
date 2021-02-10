@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./styles/main.css">
     <title>Buscador de series</title>
 </head>
@@ -12,19 +14,19 @@
     <header class="header">
         <h1 class="title">Buscador de series</h1>
         <form action="">
-            <input class="js-input" type="text" placeholder="Escribe la serie">
-            <button class="js-search">Search</button>
+            <input class="input js-input" type="text" placeholder="Escribe la serie">
+            <button class="search js-search">Search</button>
         </form>
     </header>
-    <div>
-        <h2>Mis series favoritas</h2>
+    <section class="favorites">
+        <h2 class="title-fav">Mis series favoritas</h2>
         <div class="container-fav js-container--fav">
         </div>
-    </div>
-    <div class="container-list js-container--list">
+    </section>
+    <section class="container-list js-container--list">
 
 
-    </div>
+    </section>
 
     <script src="./js/main.js"></script>
 </body>
