@@ -106,16 +106,16 @@ function getFromLocalStorage(){
 
   function paintFavoritesList(){  
       let htmlCode = '';
-      htmlCode += '<ul class="js-list">';
+      htmlCode += '<ul class="list js-list">';
       for (const favorite of favoritesList) {
-          htmlCode += `<li class="show js-show js-show--favorite" id="${favorite.id}" style="background-color: #d40f48">`;
-          htmlCode += `<h3 class="show-name js-show-name">${favorite.name}</h3>`;
+          htmlCode += `<li class="show-fav show js-show js-show--favorite" id="${favorite.id}" style="background-color: #d40f48">`;
+          htmlCode += `<h3 class="show-name show-name-fav js-show-name">${favorite.name}</h3>`;
           let favoriteImage = favorite.image;
           if (favoriteImage === null){
-         htmlCode += `<img class="image" src="https://via.placeholder.com/210x295/ffffff/666666/? text=TV" alt="${favorite.name}">`;
+         htmlCode += `<img class="image image-fav" src="https://via.placeholder.com/210x295/ffffff/666666/? text=TV" alt="${favorite.name}">`;
           } 
           else {
-          htmlCode += `<img class="image" src="${favorite.image.medium}" alt="${favorite.name}">`;
+          htmlCode += `<img class="image image-fav" src="${favorite.image.medium}" alt="${favorite.name}">`;
           }
           htmlCode += '</li>';  
       }
