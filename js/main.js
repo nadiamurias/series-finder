@@ -30,7 +30,20 @@ function handleSearch(e) {
   callToApi();
   paintShowsList();
 }
+
 searchElement.addEventListener("click", handleSearch);
+
+// try reset
+
+const resetElement = document.querySelector(".js-reset");
+function handleReset(e) {
+  e.preventDefault();
+  for (const show of showsList) {
+    console.log("reseteando... " + show.name);
+  }
+}
+
+resetElement.addEventListener("click", handleReset);
 
 // paint shows
 
