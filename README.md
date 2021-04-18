@@ -12,6 +12,6 @@ Para la maquetación y programación de la página web he utilizado:
 - Css
 - Javascript
 
-Podrás acceder al **buscador de series** a través de este [enlace](http://beta.adalab.es/modulo-2-evaluacion-final-Nadia3584/).
+Podrás acceder al **buscador de series** a través de este [enlace](https://nadiamurias.github.io/series-finder/).
 
 Actualmemte la página no es responsive... work in progress!👩🏻‍💻
